@@ -1,12 +1,15 @@
-import React, { useState } from "react";
-import App from "../App";
+import React, { useState, useContext } from "react";
+import { TaskContext } from "../context/TaskContext";
 
-function TaskForm({ createTask }) {
+function TaskForm() {
   const [Title, setTitle] = useState(null);
   const [Description, setDescription] = useState(null);
+  const value = useContext(TaskContext);
+  console.log(value);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    createTask({ title: Title, description: Description });
+    value.createTask({ title: Title, description: Description });
     e.target.reset();
   };
   return (
